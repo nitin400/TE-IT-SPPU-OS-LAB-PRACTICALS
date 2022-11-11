@@ -1,0 +1,281 @@
+NAME-ANDHALE NITIN PARASRAM
+DIV-1 
+ROLL NO- I3111
+
+Statement: Write a program to implement an address book with options 
+given below: a) Create address book. b) View address book. c) Insert a 
+record. d) Delete a record. e) Modify a record. f) Exit
+
+
+Code:
+ 
+echo "ENTER ADDRESS BOOK NAME: "
+read fname
+touch $fname
+echo -e "ADDRESSBOOK CREATED ....\n"
+echo -e "ID \t\t NAME\t\t MOB_NO\t\t SALARY">>$fname
+ch=0
+while [ true ]
+do
+echo -e "******ADDRESS BOOK****** :\n"
+echo -e "\t1.CREATE ADDRESS BOOK"
+echo -e "\t2.VIEW ADDRESS BOOK"
+echo -e "\t3.INSERT A RECORD"
+echo -e "\t4.DELETE A RECORD"
+echo -e "\t5.MODIFY A RECORD"
+echo -e "\t6.SEARCH A RECORD"
+echo -e "\t7.EXIT FROM ADDRESS BOOK"
+echo -e "ENTER YOUR CHOICE"
+read ch
+case $ch in
+ 1)echo -e "enter number of records you want to enter \t"
+ read n
+ for((i=0;i<$n;i++))
+ do
+ echo -e "ENTER ID OF EMPLOYEE\t"
+ read eid
+ echo -e "ENTER NAME OF EMPLOYEE\t"
+ read ename
+ echo -e "ENTER MOBILE NO. OF EMPLOYEE\t"
+ read emob
+ echo -e "ENTER SALARY OF EMPLOYEE\t"
+ read esal
+ echo -e " $eid \t\t$ename \t\t $emob \t $esal \n">>$fname
+ done
+ ;;
+ 2)
+ cat $fname
+ ;; 
+ 3) echo -e "enter new record"
+ 
+ echo -e "ENTER ID OF EMPLOYEE\t"
+ read eid
+ echo -e "ENTER NAME OF EMPLOYEE\t"
+ read ename
+ echo -e "ENTER MOBILE NO. OF EMPLOYEE\t"
+ read emob
+ echo -e "ENTER SALARY OF EMPLOYEE\t"
+ read esal
+ echo -e " $eid \t\t$ename \t\t $emob \t $esal \n">>$fname
+ ;;
+ 4)
+ echo -e "ENTER EMPLOYEE ID TO BE DELETED "
+ read eid
+ if grep -w $eid $fname 
+ then
+ grep -wv $eid $fname >>temp
+ rm $fname
+ mv temp $fname
+ echo "RECORD DELETED"
+ else
+ echo "ERROR : RECORD DOES NOT EXIST !!"
+ fi
+ ;;
+ 5)
+ echo "ENTER EMPLOYE ID TO BE MODIFIY"
+ read eid
+ if grep -w $eid $fname 
+ then
+ grep -wv $eid $fname >>temp
+ rm $fname
+ mv temp $fname
+ echo -e "enter modified record"
+ echo -e "ENTER ID OF EMPLOYEE\t"
+ read eid
+ echo -e "ENTER NAME OF EMPLOYEE\t"
+ read ename
+ echo -e "ENTER MOBILE NO. OF EMPLOYEE\t"
+ read emob
+ echo -e "ENTER SALARY OF EMPLOYEE\t"
+ read esal
+ echo -e " $eid \t\t$ename \t\t $emob \t $esal 
+\n">>$fname
+ else
+ echo "ERROR : RECORD DOES NOT EXIST !! "
+ fi
+ ;; 
+ 6)
+ echo -e "ENTER EMPLOYEE ID TO BE SEARCHED "
+ read eid
+ if grep $eid $fname 
+ then
+ grep -w $eid $fname 
+ echo "RECORD FOUND...!!!"
+ else
+ echo "ERROR : RECORD DOES NOT EXIST !!! "
+ fi
+ ;;
+ 
+ 7) 
+ echo -e "THANK YOU"
+ exit
+ ;;
+ 
+ *) 
+ echo -e "PLEASE ENTER THE CORRECT CHOICE"
+ 
+ esac
+done 
+
+
+//OUTPUT
+
+nitin@sid:~/Desktop$ bash adbook.sh
+Address Book
+File name:
+file1
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+1
+Enter number of records:
+2
+Enter e_id:
+101
+Enter name:
+abcd
+Enter mobile number:
+9922334475
+Enter salary:
+10000
+Enter location:
+pune
+Enter e_id:
+102
+Enter name:
+pqrs
+Enter mobile number:
+2234345676
+Enter salary:
+12000
+Enter location:
+dhule
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+2
+e_id e_name mobile_no salary location 
+101 abcd 9922334455 10000 pune 
+102 pqrs 2234345676 12000 dhule 
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+3
+Enter e_id:
+103
+Enter name:
+asdf
+Enter mobile number:
+7117288293 
+Enter salary:
+15000
+Enter location:
+goa
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+2
+e_id e_name mobile_no salary location 
+101 abcd 9922334455 10000 pune 
+102 pqrs 2234345676 12000 dhule 
+103 asdf 7117288293 15000 goa 
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+4
+Enter Employee ID to delete:
+101
+101 abcd 9922334455 10000 pune 
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+2
+e_id e_name mobile_no salary location 
+102 pqrs 2234345676 12000 dhule 
+103 asdf 7117288293 15000 goa 
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+5
+Enter Employee ID to modify:
+103
+103 asdf 7117288293 15000 goa 
+Enter e_id:
+103
+Enter name:
+abcd
+Enter mobile number:
+2343315617
+Enter salary:
+19000
+Enter location:
+pune
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+2
+e_id e_name mobile_no salary location 
+102 pqrs 2234345676 12000 dhule 
+103 abcd 2343315617 19000 pune 
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+6
+Enter Employee id to search:
+102
+102 pqrs 2234345676 12000 dhule 
+Record found
+1) Create Address Book
+2) View Address Book
+3) Insert a Record
+4) Delete a Record
+5) Modify a Record
+6) Search a Record
+7) Exit
+Enter Your Choice:
+7
